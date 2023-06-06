@@ -90,15 +90,17 @@
 
 				const geometry = new THREE.CylinderGeometry( 0.1, 0.1, 0.2, 32 ).translate( 0, 0.1, 0 );
 
+				// コード内で3Dモデルを作成
 				function onSelect() {
 
 					if ( reticle.visible ) {
 
-						const material = new THREE.MeshPhongMaterial( { color: 0xffffff * Math.random() } );
-						const mesh = new THREE.Mesh( geometry, material );
-						reticle.matrix.decompose( mesh.position, mesh.quaternion, mesh.scale );
-						mesh.scale.y = Math.random() * 2 + 1;
-						scene.add( mesh );
+						// 必要ないのでコメントアウト
+						// const material = new THREE.MeshPhongMaterial( { color: 0xffffff * Math.random() } );
+						// const mesh = new THREE.Mesh( geometry, material );
+						// reticle.matrix.decompose( mesh.position, mesh.quaternion, mesh.scale );
+						// mesh.scale.y = Math.random() * 2 + 1;
+						// scene.add( mesh );
 
 					}
 
@@ -120,7 +122,33 @@
 
 				window.addEventListener( 'resize', onWindowResize );
 
+				// 追加
+				// GLTFファイル使用関数呼び出し
+				loadModel();
 			}
+
+			// 追加
+			// GLTFファイルを使用
+			function loadModel() {
+				const loader = new GLTFLoader();
+
+				loader.load(
+					'cube_small.glb', // モデルのファイルパスを指定する
+					function (gltf) {
+						const model = gltf.scene;
+						scene.add(model);
+					},
+					function (xhr) {
+						console.log((xhr.loaded / xhr.total) * 100 + '% loaded');
+					},
+					function (error) {
+						console.error('An error happened', error);
+					}
+				);
+			}
+
+
+
 
 			function onWindowResize() {
 
