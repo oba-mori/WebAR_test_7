@@ -35,15 +35,55 @@
 		<script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
 
 
+
+
+
+
+
+
+<!-- 
+		<script type="importmap">
+			{
+				"imports": {
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
+				}
+			}
+		</script>
+
 		<script type="module">
 
+			import * as THREE from 'three';
+			import { ARButton } from 'three/addons/webxr/ARButton.js';
+
+		</script> -->
+
+
+
+
+
+
+		<!-- // import * as THREE from 'three'; と同時に使用し、importするため-->
+		<!-- <script type="importmap">
+			{
+				"imports": {
+					"three": "./three.module.js",
+				}
+			}
+		</script> -->
+
+
+
+		<script type="module">
+
+			// importmapと一緒に使用し、three.module.jsをimportするため
 			// import * as THREE from 'three';
 
       import * as THREE from './three.module.js';  // ファイルパスを正確に指定する
 
 			// GLTFファイル使用用
 			import { GLTFLoader } from './GLTFLoader.js';
-			
+
 			// import { ARButton } from 'three/addons/webxr/ARButton.js';
 			import { ARButton } from './ARButton.js';
 
